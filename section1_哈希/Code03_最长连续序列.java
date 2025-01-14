@@ -14,24 +14,15 @@ import java.util.Map;
 public class Code03_最长连续序列 {
     // 哈希表
     public int longestConsecutive(int[] nums) {
+        int result = 0;
         HashSet<Integer> set = new HashSet<>();
-        // 加入集合中 去重
-        for (int num : nums) {
-            set.add(num);
+        for (int num : nums) set.add(num);
+        for (int x : set) {
+            if (set.contains(x - 1)) continue;
+            int y = x + 1;
+            while (set.contains(y)) y++;
+            result = Math.max(result, y - x);
         }
-        int longest = 0;
-        // 遍历集合
-        for (int num : set) {
-            if (set.contains(num - 1)) continue; // 找连续最小的
-            // 没有了则开始遍历
-            int curNum = num;
-            int curLong = 1;
-            while (set.contains(curNum + 1)) {
-                curNum++;
-                curLong++;
-            }
-            longest = Math.max(longest, curLong);
-        }
-        return longest;
+        return result;
     }
 }

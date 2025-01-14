@@ -23,4 +23,20 @@ public class Code02_盛水最多的容器 {
         }
         return ans;
     }
+    // 左右指针向中间遍历，哪条线短就移动哪条的指针，移动之间计算面积更新答案
+    public int maxArea1(int[] height) {
+        int ans = 0;
+        int left = 0, right = height.length - 1;
+        while (left < right) {
+            // 计算面积
+            int area = (right - left) * Math.min(height[left], height[right]);
+            if (height[left] > height[right]) {
+                right--;
+            } else {
+                left++;
+            }
+            ans = Math.max(ans, area);
+        }
+        return ans;
+    }
 }

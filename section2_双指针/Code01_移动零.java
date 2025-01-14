@@ -16,10 +16,9 @@ public class Code01_移动零 {
         int len = nums.length;
         int left = 0, right = 0;
         while (right < len) {
-            // 不等于 0 的时候交换
             if (nums[right] != 0) {
                 swap(nums, left, right);
-                left++; // 增加一个非零元素 左指针才移动
+                left++;
             }
             right++;
         }
